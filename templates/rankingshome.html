@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Rankings
+{% endblock %}
+
+
+{% block main %}
+<div class="container my-3">
+  <h1>Rankings</h1>
+  <div class="row mt-3">
+    <div class="col">
+      <a href="/rankings/100m/male" class="btn btn-lg btn-primary mb-2" role="button">100m- male</a>
+      <a href="/rankings/200m/male" class="btn btn-lg btn-primary mb-2" role="button">200m- male</a>
+      <a href="/rankings/400m/male" class="btn btn-lg btn-primary mb-2" role="button">400m- male</a>
+      <a href="/rankings/800m/male" class="btn btn-lg btn-primary mb-2" role="button">800m- male</a>
+      <a href="/rankings/1600m/male" class="btn btn-lg btn-primary mb-2" role="button">1600m- male</a>
+      <a href="/rankings/3200m/male" class="btn btn-lg btn-primary mb-2" role="button">3200m- male</a>
+      <a href="/rankings/5000m/male" class="btn btn-lg btn-primary mb-2" role="button">5000m- male</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a href="/rankings/100m/female" class="btn btn-lg btn-secondary mb-2" role="button">100m- female</a>
+      <a href="/rankings/200m/female" class="btn btn-lg btn-secondary mb-2" role="button">200m- female</a>
+      <a href="/rankings/400m/female" class="btn btn-lg btn-secondary mb-2" role="button">400m- female</a>
+      <a href="/rankings/800m/female" class="btn btn-lg btn-secondary mb-2" role="button">800m- female</a>
+      <a href="/rankings/1600m/female" class="btn btn-lg btn-secondary mb-2" role="button">1600m- female</a>
+      <a href="/rankings/3200m/female" class="btn btn-lg btn-secondary mb-2" role="button">3200m- female</a>
+      <a href="/rankings/5000m/female" class="btn btn-lg btn-secondary mb-2" role="button">5000m- female</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

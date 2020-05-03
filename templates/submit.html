@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Submit a Time
+{% endblock %}
+
+
+{% block main %}
+
+<div class="submit-form my-4">
+
+  <h1 class="my-5">Submit a Time</h1>
+
+  <h3 class="my-4">Personal Information</h3>
+
+  <form action="/submit" method="POST">
+    <div class="row">
+      <div class=" form-group col-xs-12 col-md-6">
+        <input type="text" name="first" class="form-control" placeholder="First name" required>
+      </div>
+      <div class="form-group col-xs-12 col-md-6">
+        <input type="text" name="last" class="form-control" placeholder="Last name" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-12">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-6">
+        <select name="year" class="form-control">
+          <option selected>Freshman</option>
+          <option>Sophomore</option>
+          <option>Junior</option>
+          <option>Senior</option>
+        </select>
+      </div>
+      <div class="form-group col-xs-12 col-md-6">
+        <select name="gender" class="form-control">
+          <option selected>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+    </div>
+    <h3 class="my-4">Event Information</h3>
+    <select name="event" class="form-control form-group">
+      <option selected>100m</option>
+      <option>200m</option>
+      <option>400m</option>
+      <option>800m</option>
+      <option>1600m</option>
+      <option>3200m</option>
+      <option>5000m</option>
+    </select>
+    <div class="row">
+      <div class="form-group col-4">
+        <input type="text" name="minutes" class="form-control" placeholder="Minutes" required>
+      </div>
+      <div class="form-group col-4">
+        <input type="text" name="seconds" class="form-control" placeholder="Seconds" required>
+      </div>
+      <div class="form-group col-4">
+        <input type="text" name="milliseconds" class="form-control" placeholder="Milliseconds" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="date">Date run</label>
+      <input type="date" name="date" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  </form>
+
+</div>
+
+{% endblock %}

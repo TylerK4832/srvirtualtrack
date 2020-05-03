@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container my-3">
+  <h1>South River Track and Field</h1>
+  <div class="row">
+    <div class="col">
+      <div class="dropdown my-3">
+        <button class="btn btn-large btn-light event-dropdown dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Event
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/rankings/100m/male/">100m- male</a>
+          <a class="dropdown-item" href="/rankings/200m/male/">200m- male</a>
+          <a class="dropdown-item" href="/rankings/400m/male/">400m- male</a>
+          <a class="dropdown-item" href="/rankings/800m/male/">800m- male</a>
+          <a class="dropdown-item" href="/rankings/1600m/male/">1600m- male</a>
+          <a class="dropdown-item" href="/rankings/3200m/male/">3200m- male</a>
+          <a class="dropdown-item" href="/rankings/5000m/male/">5000m- male</a>
+          <a class="dropdown-item" href="/rankings/100m/female/">100m- female</a>
+          <a class="dropdown-item" href="/rankings/200m/female/">200m- female</a>
+          <a class="dropdown-item" href="/rankings/400m/female/">400m- female</a>
+          <a class="dropdown-item" href="/rankings/800m/female/">800m- female</a>
+          <a class="dropdown-item" href="/rankings/1600m/female/">1600m- female</a>
+          <a class="dropdown-item" href="/rankings/3200m/female/">3200m- female</a>
+          <a class="dropdown-item" href="/rankings/5000m/male/">5000m- female</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-9">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Event</th>
+            <th scope="col">Time</th>
+            <th scope="col">Name</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(length) %}
+            <tr>
+              <td>{{list[i][3]}}</td>
+              <td>{{list[i][4]}}</td>
+              <td>{{list[i][0]}}</td>
+              <td>{{list[i][1]}}</td>
+              <td>{{list[i][2]}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <a href="/submit" class="btn btn-lg btn-primary mb-2" role="button">Submit a time</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
