@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+from cs50 import SQL
 from helpers import bubbleSortDates, bubbleSortTimes, apology
 
 from flask import Flask, render_template, request, make_response, redirect
@@ -8,16 +9,17 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 
 app = Flask(__name__)
 
+# Configure CS50 Library to use SQLite database
+db = SQL("sqlite:///srvirtualtrack.db")
+
 @app.route("/")
 def index():
-    connection=sqlite3.connect("srvirtualtrack.db")
-    cursor=connection.cursor()
-    cursor.execute("SELECT * FROM times")
-    entries=cursor.fetchall()
 
+    entries = db.execute("SELECT * FROM times")
+    print(entries)
     list = []
     for t in entries:
-        sub = [t[0] + ' ' + t[1], t[5], t[6], t[7], t[2], t[8], t[4]]
+        sub = [t['firstname'] + ' ' + t['lastname'], t['minutes'], t['seconds'], t['milliseconds'], t['year'], t['date'], t['event']]
         list.append(sub)
     bubbleSortDates(list)
     for t in list:
@@ -33,14 +35,11 @@ def rankings(event=1, gender=1):
     if event == 1 and gender == 1:
         return render_template("rankingshome.html")
     else:
-        connection=sqlite3.connect("srvirtualtrack.db")
-        cursor=connection.cursor()
-        cursor.execute("SELECT * FROM times WHERE event = :event AND gender = :gender", {'event': event, 'gender': gender.capitalize()})
-        timesList=cursor.fetchall()
+        timesList = db.execute("SELECT * FROM times WHERE event = :event AND gender = :gender", {'event': event, 'gender': gender.capitalize()})
 
         list = []
         for t in timesList:
-            sub = [t[0] + ' ' + t[1], t[5], t[6], t[7], t[2], t[8]]
+            sub = [t['firstname'] + ' ' + t['lastname'], t['minutes'], t['seconds'], t['milliseconds'], t['year'], t['date']]
             list.append(sub)
         bubbleSortTimes(list)
         for t in list:
@@ -82,11 +81,8 @@ def submit():
         if len(milliseconds) == 1:
             milliseconds = '0' + milliseconds
 
-        connection=sqlite3.connect("srvirtualtrack.db")
-        cursor=connection.cursor()
-        cursor.execute("INSERT INTO times (firstname, lastname, year, gender, event, minutes, seconds, milliseconds, date, email) VALUES(:first, :last, :year, :gender, :event, :minutes, :seconds, :milliseconds, :date, :email)",
+        db.execute("INSERT INTO times (firstname, lastname, year, gender, event, minutes, seconds, milliseconds, date, email) VALUES(:first, :last, :year, :gender, :event, :minutes, :seconds, :milliseconds, :date, :email)",
                         dict(first=first, last=last, year=year, gender=gender, event=event, minutes=minutes, seconds=seconds, milliseconds=milliseconds, date=date, email=email))
-        connection.commit()
 
         return redirect("/")
 
